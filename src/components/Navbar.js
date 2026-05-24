@@ -48,7 +48,11 @@ function Navbar() {
   const closeMenu = () => setIsOpen(false);
 
   useEffect(() => {
-    document.body.classList.toggle('menu-open', isOpen);
+    if (isOpen) {
+      document.body.classList.add('menu-open');
+    } else {
+      document.body.classList.remove('menu-open');
+    }
 
     return () => {
       document.body.classList.remove('menu-open');
@@ -98,23 +102,25 @@ function Navbar() {
 
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            className="mobile-menu-overlay"
-            role="dialog"
-            aria-modal="true"
-            aria-label="Mobile navigation"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            onClick={closeMenu}
-          >
+          <>
+            <motion.div
+              className="mobile-menu-backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.16 }}
+              onClick={closeMenu}
+            />
+
             <motion.div
               className="mobile-menu-card"
-              initial={{ opacity: 0, y: -25, scale: 0.96 }}
+              role="dialog"
+              aria-modal="true"
+              aria-label="Mobile navigation"
+              initial={{ opacity: 0, scale: 0.88, y: -12, x: 18 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -20, scale: 0.96 }}
-              transition={{ duration: 0.35, ease: 'easeOut' }}
+              exit={{ opacity: 0, scale: 0.9, y: -8, x: 14 }}
+              transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
               onClick={(event) => event.stopPropagation()}
             >
               <div className="mobile-menu-header">
@@ -138,7 +144,7 @@ function Navbar() {
                 ))}
               </nav>
             </motion.div>
-          </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>
