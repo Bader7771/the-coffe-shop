@@ -1,0 +1,71 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap");
+
+:root {
+  --cream: #fff4df;
+  --cream-light: #fffaf0;
+  --soft-cream: #eadcc2;
+  --beige: #d9c3a6;
+  --clay: #b9835f;
+  --coffee: #3c261b;
+  --warm-brown: #6f452d;
+  --olive: #71775d;
+  --olive-deep: #505641;
+  --color-olive-dark: #56614d;
+  --color-cream: #f4efe6;
+  --color-muted-cream: rgba(244, 239, 230, 0.78);
+  --color-soft-line: rgba(244, 239, 230, 0.18);
+  --color-olive-light: #a8b48e;
+  --white: #ffffff;
+  --line: rgba(255, 244, 223, 0.28);
+  --font-heading: "Baloo 2", cursive;
+  --font-body: "Nunito", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--cream-light);
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--cream-light);
+  color: var(--coffee);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+button {
+  border: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.app-shell {
+  min-height: 100vh;
+  background: var(--cream-light);
+}
+
+.hero-section,
+.experiences-section,
+.gallery-section,
+.instagram-section,
+.footer,
+.cta-section {
+  position: relative;
+  z-index: 1;
+}

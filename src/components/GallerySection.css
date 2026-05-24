@@ -1,0 +1,118 @@
+.gallery {
+  position: relative;
+  z-index: 1;
+  background:
+    radial-gradient(circle at 90% 0%, rgba(113, 119, 93, 0.1), transparent 28%),
+    linear-gradient(180deg, #f5ead9 0%, var(--cream-light) 100%);
+  padding: clamp(56px, 7vw, 86px) clamp(16px, 5vw, 64px) clamp(64px, 8vw, 96px);
+  color: var(--coffee);
+  font-family: var(--font-body);
+}
+
+.gallery__inner {
+  width: min(1100px, 100%);
+  margin: 0 auto;
+}
+
+.gallery__header {
+  max-width: 760px;
+  margin: 0 auto 30px;
+  text-align: center;
+}
+
+.gallery__header h2 {
+  margin: 0;
+  color: var(--olive-deep);
+  font-family: var(--font-heading);
+  font-size: clamp(2.35rem, 5vw, 4.5rem);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: 0;
+  text-wrap: balance;
+}
+
+.gallery__header p {
+  max-width: 650px;
+  margin: 14px auto 0;
+  color: rgba(60, 38, 27, 0.72);
+  font-size: clamp(1rem, 1.45vw, 1.15rem);
+  font-weight: 600;
+  line-height: 1.62;
+}
+
+.gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.gallery-card {
+  position: relative;
+  height: 210px;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 24px;
+  background: var(--soft-cream);
+  box-shadow: 0 16px 38px rgba(60, 38, 27, 0.11);
+}
+
+.gallery-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.01);
+  transition: transform 520ms ease, filter 520ms ease;
+}
+
+.gallery-card:hover img {
+  transform: scale(1.08);
+  filter: saturate(1.04) contrast(1.02);
+}
+
+@media (max-width: 900px) {
+  .gallery__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gallery-card {
+    height: 190px;
+  }
+}
+
+@media (max-width: 560px) {
+  .gallery {
+    padding: 54px 14px 68px;
+  }
+
+  .gallery__header {
+    margin-bottom: 24px;
+  }
+
+  .gallery__header h2 {
+    font-size: clamp(2.2rem, 12vw, 3.45rem);
+  }
+
+  .gallery__header p {
+    font-size: 0.98rem;
+    line-height: 1.55;
+  }
+
+  .gallery__grid {
+    gap: 10px;
+  }
+
+  .gallery-card {
+    height: 160px;
+    border-radius: 18px;
+  }
+}
+
+@media (max-width: 390px) {
+  .gallery__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-card {
+    height: 156px;
+  }
+}

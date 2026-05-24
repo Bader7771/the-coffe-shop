@@ -1,0 +1,16 @@
+html {
+  scroll-behavior: smooth;
+  background: #3c261b;
+}
+
+body {
+  margin: 0;
+  font-family: "Nunito Sans", "Avenir Next", "Segoe UI", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button,
+a {
+  font: inherit;
+}
