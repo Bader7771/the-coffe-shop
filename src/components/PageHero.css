@@ -8,7 +8,7 @@
   isolation: isolate;
   background:
     linear-gradient(120deg, rgba(60, 38, 27, 0.76), rgba(86, 97, 77, 0.72)),
-    url("https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&w=1800&q=80") center/cover;
+    url("https://i.pinimg.com/736x/ba/49/65/ba4965d4b15b611058de70b4c397e682.jpg") center/cover;
   color: var(--cream);
 }
 

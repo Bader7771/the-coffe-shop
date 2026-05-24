@@ -7,7 +7,7 @@ import './CafePage.css';
 
 const menuHighlights = [
   {
-    image: 'https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=1100&q=80',
+    image: 'https://i.pinimg.com/736x/a0/fa/1d/a0fa1dd11a05dacbb66f1d7efab428b0.jpg',
     alt: 'Cafes de specialite',
     label: <>S&Eacute;LECTION CAF&Eacute;</>,
     title: <>Caf&eacute;s de sp&eacute;cialit&eacute;</>,
@@ -16,7 +16,7 @@ const menuHighlights = [
     href: '#nos-cafes',
   },
   {
-    image: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=1100&q=80',
+    image: 'https://i.pinimg.com/1200x/62/c8/ec/62c8ec663ed192219be5cdd6b6ce8492.jpg',
     alt: 'Boissons fraiches et douceurs',
     label: <>FAIT MAISON</>,
     title: <>Boissons fra&icirc;ches & douceurs</>,
