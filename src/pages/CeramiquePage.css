@@ -1,0 +1,96 @@
+.workshops__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(18px, 2.4vw, 28px);
+}
+
+.workshop-card {
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.76);
+}
+
+.workshop-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 28px 28px 0 0;
+}
+
+.workshop-card div {
+  padding: 24px;
+}
+
+.workshop-card h3,
+.ceramic-step h3 {
+  margin: 0;
+  color: var(--color-olive);
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.workshop-card p {
+  margin: 12px 0 18px;
+  color: rgba(60, 38, 27, 0.7);
+  font-weight: 600;
+  line-height: 1.58;
+}
+
+.workshop-card__meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+  border-top: 1px solid rgba(86, 97, 77, 0.12);
+  padding-top: 14px;
+  color: var(--warm-brown);
+  font-weight: 800;
+}
+
+.ceramic-process__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.ceramic-step {
+  display: grid;
+  min-height: 170px;
+  align-content: center;
+  gap: 14px;
+  padding: 24px;
+  text-align: center;
+}
+
+.ceramic-step span {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  justify-self: center;
+  border-radius: 50%;
+  background: var(--color-olive);
+  color: var(--color-cream);
+  font-weight: 900;
+}
+
+.ceramic-step h3 {
+  font-size: 1.45rem;
+}
+
+@media (max-width: 900px) {
+  .ceramic-process__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .workshops__grid,
+  .ceramic-process__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .workshop-card img {
+    height: 220px;
+  }
+}

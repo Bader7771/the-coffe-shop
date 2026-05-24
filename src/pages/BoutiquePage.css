@@ -1,0 +1,77 @@
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 2.2vw, 26px);
+}
+
+.product-card {
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.76);
+}
+
+.product-card img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  border-radius: 28px 28px 0 0;
+}
+
+.product-card div {
+  display: grid;
+  gap: 10px;
+  padding: 22px;
+}
+
+.product-card h3,
+.boutique-cta h2 {
+  margin: 0;
+  color: var(--color-olive);
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.product-card p {
+  margin: 0;
+  color: rgba(60, 38, 27, 0.7);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.product-card strong {
+  color: var(--warm-brown);
+  font-weight: 900;
+}
+
+.boutique-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: clamp(28px, 4vw, 44px);
+  background: rgba(248, 244, 236, 0.9);
+}
+
+.boutique-cta h2 {
+  font-size: clamp(2rem, 4vw, 3.35rem);
+  color: var(--warm-brown);
+}
+
+@media (max-width: 940px) {
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .boutique-cta {
+    display: grid;
+    text-align: center;
+  }
+}
+
+@media (max-width: 430px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+}

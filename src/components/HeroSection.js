@@ -1,15 +1,10 @@
-import { FaInstagram, FaPinterestP, FaTiktok } from 'react-icons/fa6';
+import { motion } from 'framer-motion';
+import { containerStagger, fadeUp, fadeUpTransition } from '../animations';
 import Navbar from './Navbar';
 import './HeroSection.css';
 
-const socialLinks = [
-  { label: 'Instagram', href: '#instagram', icon: FaInstagram },
-  { label: 'TikTok', href: '#tiktok', icon: FaTiktok },
-  { label: 'Pinterest', href: '#pinterest', icon: FaPinterestP },
-];
-
 const heroVideoUrl = `${process.env.PUBLIC_URL}/assets/coffe.mp4`;
-const heroPosterUrl = 'https://i.pinimg.com/736x/71/cd/19/71cd19ed66b4fe7cb9f0f4bfa71b4d8a.jpg';
+const heroPosterUrl = `${process.env.PUBLIC_URL}/assets/coffe.mp4`;
 
 function HeroSection() {
   return (
@@ -30,32 +25,35 @@ function HeroSection() {
 
       <Navbar />
 
-      <div className="hero__content">
-        <p className="hero__eyebrow">Sip, create and connect</p>
-        <h1>Specialty coffee & pottery studio</h1>
-        <p className="hero__description">
+      <motion.div
+        className="hero__content"
+        variants={containerStagger}
+        initial="hidden"
+        animate="visible"
+      >
+        <motion.p className="hero__eyebrow" variants={fadeUp} transition={fadeUpTransition}>
+          Sip, create and connect
+        </motion.p>
+        <motion.h1 variants={fadeUp} transition={fadeUpTransition}>
+          Specialty coffee & pottery studio
+        </motion.h1>
+        <motion.p className="hero__description" variants={fadeUp} transition={fadeUpTransition}>
           Un lieu hybride o&ugrave; l&rsquo;on vient savourer un caf&eacute;,
           cr&eacute;er de ses mains et partager un moment, simplement.
-        </p>
-        <p className="hero__address">25 boulevard du Temple, 75003 Paris</p>
+        </motion.p>
+        <motion.p className="hero__address" variants={fadeUp} transition={fadeUpTransition}>
+          25 boulevard du Temple, 75003 Paris
+        </motion.p>
 
-        <div className="hero__buttons" aria-label="Hero actions">
+        <motion.div className="hero__buttons" aria-label="Hero actions" variants={fadeUp} transition={fadeUpTransition}>
           <a className="button button--primary" href="#reservation">
             R&eacute;server un atelier
           </a>
           <a className="button button--secondary" href="#carte">
             D&eacute;couvrir la carte
           </a>
-        </div>
-      </div>
-
-      <div className="social-rail" aria-label="Social media links">
-        {socialLinks.map(({ label, href, icon: Icon }) => (
-          <a href={href} key={label} aria-label={label}>
-            <Icon aria-hidden="true" />
-          </a>
-        ))}
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

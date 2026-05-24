@@ -1,43 +1,44 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Link, NavLink as RouterNavLink } from 'react-router-dom';
 import { BsBag } from 'react-icons/bs';
 import { GiCoffeeCup } from 'react-icons/gi';
+import { IoClose } from 'react-icons/io5';
 import {
   MdArticle,
   MdEvent,
   MdLocalCafe,
   MdOutlineContactMail,
   MdPerson,
-  MdVerified,
 } from 'react-icons/md';
 import './Navbar.css';
 
 const navLeft = [
-  { label: 'Cafe', href: '#cafe', icon: MdLocalCafe },
-  { label: 'Ceramique', href: '#ceramique', icon: GiCoffeeCup },
-  { label: 'Boutique', href: '#boutique', icon: BsBag },
+  { label: 'Cafe', path: '/cafe', icon: MdLocalCafe },
+  { label: 'Ceramique', path: '/ceramique', icon: GiCoffeeCup },
+  { label: 'Boutique', path: '/boutique', icon: BsBag },
 ];
 
 const navRight = [
-  { label: 'Evenements', href: '#evenements', icon: MdEvent },
-  { label: 'Blog', href: '#blog', icon: MdArticle },
-  { label: 'Contact', href: '#contact', icon: MdOutlineContactMail },
+  { label: 'Evenements', path: '/evenements', icon: MdEvent },
+  { label: 'Blog', path: '/blog', icon: MdArticle },
+  { label: 'Contact', path: '/contact', icon: MdOutlineContactMail },
 ];
 
 const mobileLinks = [
   ...navLeft,
   ...navRight,
-  { label: 'Nos engagements', href: '#engagements', icon: MdVerified },
-  { label: 'Espace client', href: '#client', icon: MdPerson },
+  { label: 'Espace client', path: '/contact', icon: MdPerson },
 ];
 
-function NavLink({ item, onClick }) {
+function NavLink({ item, onClick, className }) {
   const Icon = item.icon;
 
   return (
-    <a href={item.href} onClick={onClick}>
+    <RouterNavLink to={item.path} onClick={onClick} className={className}>
       <Icon aria-hidden="true" />
       <span>{item.label}</span>
-    </a>
+    </RouterNavLink>
   );
 }
 
@@ -46,51 +47,101 @@ function Navbar() {
 
   const closeMenu = () => setIsOpen(false);
 
+  useEffect(() => {
+    document.body.classList.toggle('menu-open', isOpen);
+
+    return () => {
+      document.body.classList.remove('menu-open');
+    };
+  }, [isOpen]);
+
   return (
-    <nav className="navbar" aria-label="Main navigation">
-      <div className="navbar__links navbar__links--left">
-        {navLeft.map((item) => (
-          <NavLink item={item} key={item.label} />
-        ))}
-      </div>
+    <>
+      <header className="navbar" aria-label="Main navigation">
+        <div className="navbar__links navbar__links--left">
+          {navLeft.map((item) => (
+            <NavLink item={item} key={item.label} />
+          ))}
+        </div>
 
-      <a className="navbar__logo" href="#top" aria-label="Coffee Arts Paris home">
-        <span>Coffee Arts</span>
-        <strong>Paris</strong>
-      </a>
+        <Link className="navbar__logo" to="/" aria-label="Coffee Arts Paris home" onClick={closeMenu}>
+          <span>Coffee Arts</span>
+          <strong>Paris</strong>
+        </Link>
 
-      <div className="navbar__links navbar__links--right">
-        {navRight.map((item) => (
-          <NavLink item={item} key={item.label} />
-        ))}
-      </div>
+        <div className="navbar__links navbar__links--right">
+          {navRight.map((item) => (
+            <NavLink item={item} key={item.label} />
+          ))}
+        </div>
 
-      <button
-        className={`navbar__menu ${isOpen ? 'is-open' : ''}`}
-        type="button"
-        aria-label={isOpen ? 'Close menu' : 'Open menu'}
-        aria-expanded={isOpen}
-        onClick={() => setIsOpen((current) => !current)}
-      >
-        <span />
-        <span />
-      </button>
-
-      <div className="navbar__actions" aria-label="Account and cart">
-        <button type="button" aria-label="Espace client">
-          <MdPerson aria-hidden="true" />
+        <button
+          className="navbar__menu"
+          type="button"
+          aria-label="Open menu"
+          aria-expanded={isOpen}
+          onClick={() => setIsOpen(true)}
+        >
+          <span />
+          <span />
         </button>
-        <button type="button" aria-label="Boutique">
-          <BsBag aria-hidden="true" />
-        </button>
-      </div>
 
-      <div className={`navbar__mobile-panel ${isOpen ? 'is-open' : ''}`}>
-        {mobileLinks.map((item) => (
-          <NavLink item={item} key={item.label} onClick={closeMenu} />
-        ))}
-      </div>
-    </nav>
+        <div className="navbar__actions" aria-label="Account and cart">
+          <Link to="/contact" aria-label="Espace client">
+            <MdPerson aria-hidden="true" />
+          </Link>
+          <Link to="/boutique" aria-label="Boutique">
+            <BsBag aria-hidden="true" />
+          </Link>
+        </div>
+      </header>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className="mobile-menu-overlay"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Mobile navigation"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            onClick={closeMenu}
+          >
+            <motion.div
+              className="mobile-menu-card"
+              initial={{ opacity: 0, y: -25, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -20, scale: 0.96 }}
+              transition={{ duration: 0.35, ease: 'easeOut' }}
+              onClick={(event) => event.stopPropagation()}
+            >
+              <div className="mobile-menu-header">
+                <Link className="mobile-menu-logo" to="/" aria-label="Coffee Arts Paris home" onClick={closeMenu}>
+                  <small>Coffee Arts</small>
+                  <span>Paris</span>
+                </Link>
+                <button className="mobile-close-btn" type="button" onClick={closeMenu} aria-label="Close menu">
+                  <IoClose aria-hidden="true" />
+                </button>
+              </div>
+
+              <nav className="mobile-nav-links" aria-label="Mobile navigation links">
+                {mobileLinks.map((item) => (
+                  <NavLink
+                    item={item}
+                    key={item.label}
+                    onClick={closeMenu}
+                    className="mobile-nav-link"
+                  />
+                ))}
+              </nav>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
 

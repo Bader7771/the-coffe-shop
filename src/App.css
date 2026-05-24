@@ -1,6 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap");
 
 :root {
+  --color-olive: #56614d;
+  --color-olive-light: #a6b18b;
+  --color-cream: #f8f4ec;
+  --color-beige: #eadcc8;
+  --color-dark: #2f332d;
+  --color-white: #ffffff;
+  --font-heading: "Baloo 2", cursive;
+  --font-body: "Nunito", sans-serif;
+
   --cream: #fff4df;
   --cream-light: #fffaf0;
   --soft-cream: #eadcc2;
@@ -14,11 +23,8 @@
   --color-cream: #f4efe6;
   --color-muted-cream: rgba(244, 239, 230, 0.78);
   --color-soft-line: rgba(244, 239, 230, 0.18);
-  --color-olive-light: #a8b48e;
   --white: #ffffff;
   --line: rgba(255, 244, 223, 0.28);
-  --font-heading: "Baloo 2", cursive;
-  --font-body: "Nunito", sans-serif;
 }
 
 * {
@@ -41,6 +47,15 @@ body {
   overflow-x: hidden;
 }
 
+body.menu-open {
+  overflow: hidden;
+}
+
+body.menu-open .social-rail {
+  opacity: 0;
+  pointer-events: none;
+}
+
 button,
 a {
   font: inherit;
@@ -60,12 +75,116 @@ img {
   background: var(--cream-light);
 }
 
+.page {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 8% 3%, rgba(185, 131, 95, 0.11), transparent 30%),
+    linear-gradient(180deg, var(--cream-light) 0%, var(--color-cream) 100%);
+  color: var(--coffee);
+  font-family: var(--font-body);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.page__content {
+  width: min(1180px, calc(100% - 36px));
+  margin: 0 auto;
+  padding: clamp(52px, 7vw, 84px) 0;
+}
+
+.page-section {
+  position: relative;
+  z-index: 1;
+  padding: clamp(40px, 6vw, 72px) 0;
+}
+
+.soft-card {
+  border: 1px solid rgba(80, 86, 65, 0.08);
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 22px 60px rgba(60, 38, 27, 0.11);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.soft-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 30px 72px rgba(60, 38, 27, 0.16);
+}
+
+.page-button {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--color-olive);
+  box-shadow: 0 16px 34px rgba(86, 97, 77, 0.22);
+  color: var(--color-cream);
+  padding: 0 22px;
+  text-decoration: none;
+  font-weight: 800;
+  transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+}
+
+.page-button:hover {
+  transform: translateY(-3px);
+  background: var(--olive-deep);
+  box-shadow: 0 20px 42px rgba(86, 97, 77, 0.28);
+}
+
+.page-grid {
+  display: grid;
+  gap: clamp(18px, 2.4vw, 28px);
+}
+
 .hero-section,
 .experiences-section,
 .gallery-section,
 .instagram-section,
+.cafe-page,
+.ceramique-page,
+.boutique-page,
+.evenements-page,
+.blog-page,
+.contact-page,
 .footer,
-.cta-section {
+.cta-section,
+.page-section,
+.card,
+.contact-card,
+.contact-info__card,
+.collaboration-card,
+.blog-card,
+.cafe-highlight-card {
   position: relative;
   z-index: 1;
+}
+
+@media (max-width: 640px) {
+  .page__content {
+    width: min(100% - 28px, 1180px);
+    padding: 38px 0 54px;
+  }
+
+  .page-section {
+    padding: 34px 0;
+  }
+
+  .soft-card {
+    border-radius: 24px;
+  }
+
+  .page-button {
+    width: 100%;
+    min-height: 50px;
+  }
 }

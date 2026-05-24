@@ -1,4 +1,6 @@
+import { motion } from 'framer-motion';
 import { FaArrowRight } from 'react-icons/fa6';
+import { containerStagger, fadeUp, fadeUpTransition, viewportOnce } from '../animations';
 import './ExperiencesSection.css';
 
 const experiences = [
@@ -29,18 +31,31 @@ function ExperiencesSection() {
   return (
     <section className="experiences experiences-section" aria-labelledby="experiences-title">
       <div className="experiences__inner">
-        <div className="experiences__header">
+        <motion.div
+          className="experiences__header"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          transition={fadeUpTransition}
+        >
           <p className="experiences__kicker">Maison cafe & ceramique</p>
           <h2 id="experiences-title">Trois exp&eacute;riences, un m&ecirc;me lieu</h2>
           <p>
             Un caf&eacute; de sp&eacute;cialit&eacute;, des ateliers cr&eacute;atifs et
             une boutique, pens&eacute;s pour se compl&eacute;ter.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="experiences__grid">
+        <motion.div
+          className="experiences__grid"
+          variants={containerStagger}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+        >
           {experiences.map((experience) => (
-            <article className="experience-card" key={experience.title}>
+            <motion.article className="experience-card" key={experience.title} variants={fadeUp} transition={fadeUpTransition}>
               <div
                 className="experience-card__image"
                 style={{ backgroundImage: `url(${experience.image})` }}
@@ -55,9 +70,9 @@ function ExperiencesSection() {
                   <FaArrowRight aria-hidden="true" />
                 </a>
               </div>
-            </article>
+            </motion.article>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

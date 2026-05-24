@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { fadeUp, fadeUpTransition, viewportOnce } from '../animations';
 import './InstagramSection.css';
 
 const InstagramSection = () => {
@@ -16,7 +18,14 @@ const InstagramSection = () => {
 
   return (
     <section className="instagram-section">
-      <div className="instagram-container">
+      <motion.div
+        className="instagram-container"
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportOnce}
+        transition={fadeUpTransition}
+      >
         <div className="instagram-header">
           <h2>Instants Coffee Arts Paris</h2>
           <p>
@@ -40,7 +49,7 @@ const InstagramSection = () => {
             data-elfsight-app-lazy
           />
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

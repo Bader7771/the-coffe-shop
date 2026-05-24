@@ -1,16 +1,18 @@
+import { motion } from 'framer-motion';
 import { FaInstagram, FaPinterestP, FaTiktok } from 'react-icons/fa6';
 import { MdEmail, MdLocationOn, MdPhone } from 'react-icons/md';
+import { Link } from 'react-router-dom';
+import { fadeUp, fadeUpTransition, viewportOnce } from '../animations';
 import './Footer.css';
 
 const discoverLinks = [
-  'Cafe',
-  'Ceramique',
-  'Boutique',
-  'Evenements',
-  'Blog',
-  'A propos',
-  'Contact',
-  'Espace client',
+  { label: 'Cafe', path: '/cafe' },
+  { label: 'Ceramique', path: '/ceramique' },
+  { label: 'Boutique', path: '/boutique' },
+  { label: 'Evenements', path: '/evenements' },
+  { label: 'Blog', path: '/blog' },
+  { label: 'Contact', path: '/contact' },
+  { label: 'Espace client', path: '/contact' },
 ];
 
 const socialLinks = [
@@ -30,14 +32,21 @@ const payments = ['Mastercard', 'VISA', 'Apple Pay', 'PayPal'];
 
 function Footer() {
   return (
-    <footer className="footer">
+    <motion.footer
+      className="footer"
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ ...viewportOnce, amount: 0.1 }}
+      transition={{ ...fadeUpTransition, duration: 0.55 }}
+    >
       <div className="footer__inner">
         <div className="footer__columns">
           <div className="footer__brand">
-            <a className="footer__logo" href="#top" aria-label="Coffee Arts Paris home">
+            <Link className="footer__logo" to="/" aria-label="Coffee Arts Paris home">
               <span>Coffee Arts</span>
               <strong>Paris</strong>
-            </a>
+            </Link>
             <p>
               Un lieu unique o&ugrave; la c&eacute;ramique rencontre le caf&eacute;
               artisanal &agrave; Paris.
@@ -57,9 +66,9 @@ function Footer() {
             <h2>D&eacute;couvrir</h2>
             <div className="footer__links">
               {discoverLinks.map((link) => (
-                <a href={`#${link.toLowerCase().replaceAll(' ', '-')}`} key={link}>
-                  {link}
-                </a>
+                <Link to={link.path} key={link.label}>
+                  {link.label}
+                </Link>
               ))}
             </div>
           </div>
@@ -119,7 +128,7 @@ function Footer() {
           </div>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 }
 

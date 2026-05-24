@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion';
+import { containerStagger, fadeUp, fadeUpTransition, viewportOnce } from '../animations';
 import './GallerySection.css';
 
 const galleryImages = [
@@ -39,21 +41,34 @@ function GallerySection() {
   return (
     <section className="gallery gallery-section" aria-labelledby="gallery-title">
       <div className="gallery__inner">
-        <div className="gallery__header">
+        <motion.div
+          className="gallery__header"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          transition={fadeUpTransition}
+        >
           <h2 id="gallery-title">Au c&oelig;ur de Coffee Arts Paris</h2>
           <p>
             Des images pour d&eacute;couvrir l&rsquo;ambiance du lieu, ses mati&egrave;res,
             et les instants qui s&rsquo;y vivent au quotidien.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="gallery__grid">
+        <motion.div
+          className="gallery__grid"
+          variants={containerStagger}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+        >
           {galleryImages.map((image) => (
-            <figure className="gallery-card" key={image.src}>
+            <motion.figure className="gallery-card" key={image.src} variants={fadeUp} transition={fadeUpTransition}>
               <img src={image.src} alt={image.alt} loading="lazy" />
-            </figure>
+            </motion.figure>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
